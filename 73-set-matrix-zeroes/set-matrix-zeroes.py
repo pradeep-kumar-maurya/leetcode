@@ -1,23 +1,35 @@
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        """
-        The idea is to iterate over the matrix and find the rows and columns where matrix[row][col] == 0.
-        We will add rows to a set and also add columns to a set wherever row and column is pointing to 0.
-        """
-        rows_with_zero = set()
-        cols_with_zero = set()
+        rows = len(matrix)
+        cols = len(matrix[0])
 
-        # iterate over the matrix and find rows and columns that point to 0
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
+        for i in range(rows):
+            for j in range(cols):
+
                 if matrix[i][j] == 0:
-                    rows_with_zero.add(i)  # add rows to rows_with_zero set
-                    cols_with_zero.add(j)  # add columns to cols_with_zero
+                    if isinstance(matrix[0][j], str):
+                        matrix[0][j] = '0'
+                    else:
+                        matrix[0][j] = 0
+                    matrix[i][0] = str(matrix[i][0])
 
-        # iterate over the matrix and manipulate the cells to 0 by checking rows and columns in the set
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if i in rows_with_zero:  # if row is in rows_with_zero then set the cell to 0
-                    matrix[i][j] = 0
-                if j in cols_with_zero:  # if column is in cols_with_zero then set the cell to 0
+        for i in range(rows):
+            for j in range(cols):
+
+                if matrix[0][j] in ('0', 0):
+                    if isinstance(matrix[i][0], str):
+                        matrix[i][j] = "0"
+                    else:
+                        matrix[i][j] = 0
+
+        for i in range(rows):
+            for j in range(cols):
+
+                if isinstance(matrix[i][0], str):
+                    matrix[i][j] = '0'
+
+        for i in range(rows):
+            for j in range(cols):
+
+                if isinstance(matrix[i][j], str):
                     matrix[i][j] = 0
