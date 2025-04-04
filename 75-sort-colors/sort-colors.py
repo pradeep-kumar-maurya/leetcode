@@ -1,24 +1,34 @@
 class Solution:
     def sortColors(self, arr: List[int]) -> None:
+        # We will use Dutch National Flag Algorithm which uses 3 pointers to sort the array within O(N) TC and O(1) SC.
 
-        length = len(arr)
+        low = 0
+        mid = 0
+        high = len(arr) - 1
 
-        for _ in range(len(arr)):
+        # The loop has to run until mid <= high because once mid crosses the high pointer, the array will be sorted
+        while mid <= high:
 
-            m = 0
-            n = m + 1
+            # Whenever arr[mid] == 0 i.e. the lowest element, swap it with arr[low] and increment both low and mid pointer by 1
+            if arr[mid] == 0:
 
-            while n < length:
+                temp = arr[mid]
+                arr[mid] = arr[low]
+                arr[low] = temp
 
-                if arr[m] > arr[n]:  # swap
+                low += 1
+                mid += 1
 
-                    temp = arr[n]
-                    arr[n] = arr[m]
-                    arr[m] = temp
+            # Whenever arr[mid] == 1 i.e. the middle element, just increment mid pointer by 1
+            elif arr[mid] == 1:
 
-                m += 1
-                n += 1
+                mid += 1
 
-            # (length - 1) is used to avoid extra iterations because after every iteration, the max no. will be at the end
-            length -= 1
-        
+            # Whenever arr[mid] == 2 i.e. the highest element, swap arr[mid] with arr[high] and just decrement high by 1
+            elif arr[mid] == 2:
+
+                temp = arr[high]
+                arr[high] = arr[mid]
+                arr[mid] = temp
+
+                high -= 1
