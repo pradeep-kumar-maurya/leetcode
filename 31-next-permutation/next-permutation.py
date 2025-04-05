@@ -26,26 +26,17 @@ class Solution:
             arr[break_index] = temp
             
             i = break_index + 1
-            j = len(arr) - 1
-
-            while i < j:
-                temp = arr[j]
-                arr[j] = arr[i]
-                arr[i] = temp
-
-                i += 1
-                j -= 1        
+            j = len(arr) - 1       
 
 
         else:  # case where everything was sorted in descending order
             i = 0
             j = len(arr) - 1
 
-            while i < j:  # swap all the elements, basically sort the array in the ascending order
-                temp = arr[j]
-                arr[j] = arr[i]
-                arr[i] = temp
+        while i < j:  # swap all the elements, basically sort the array in the ascending order
+            temp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = temp
 
-                i += 1
-                j -= 1
-        
+            i += 1
+            j -= 1
