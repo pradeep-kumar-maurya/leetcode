@@ -30,13 +30,14 @@ class Solution:
                     index = i
                     break  # break as soon as arr[i] is > than arr[break_index]
 
+            # swap the breaking element with the first greater element from its right side
             temp = arr[index]
             arr[index] = arr[break_index]
             arr[break_index] = temp
             
+            # set i to break_index + 1 because we will do a swap at the last too
             i = break_index + 1
             j = len(arr) - 1       
-
 
         # case where everything was sorted in descending order, i will be 0 and j will be N - 1
         else:
